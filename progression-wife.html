@@ -1,0 +1,1387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<title>Progression — Hers</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="Progression">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&family=Bebas+Neue&display=swap" rel="stylesheet"><style>
+:root {
+  --bg: #0c0c0e;
+  --surface: #161618;
+  --surface2: #1e1e22;
+  --border: #2a2a30;
+  --border2: #383840;
+  --text: #f0f0f2;
+  --text2: #a0a0aa;
+  --text3: #606068;
+  --accent: #e8ff5a;
+  --accent-dark: #b8cc3a;
+  --green: #3de08a;
+  --green-dim: #1a5c3a;
+  --amber: #ffb547;
+  --amber-dim: #5c3e10;
+  --blue: #5ab4ff;
+  --blue-dim: #1a3a5c;
+  --red: #ff5a5a;
+  --r: 12px;
+  --r-sm: 8px;
+  --r-xs: 6px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+html { background: var(--bg); }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 15px;
+  line-height: 1.5;
+  min-height: 100vh;
+  padding-bottom: env(safe-area-inset-bottom, 20px);
+}
+
+/* HEADER */
+.header {
+  padding: 56px 20px 24px;
+  background: var(--bg);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  border-bottom: 1px solid var(--border);
+}
+
+.header-top {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo {
+  font-family: 'Syne', sans-serif;
+  font-size: 34px;
+  font-weight: 800;
+  color: var(--text);
+  letter-spacing: -0.02em;
+  flex-shrink: 0;
+}
+
+.logo span { color: var(--accent); }
+
+.stats-row {
+  display: flex;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.stat-chip {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 4px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 46px;
+}
+
+.stat-chip-n {
+  font-family: 'Bebas Neue', sans-serif; letter-spacing: 0.05em;
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--text);
+  line-height: 1;
+  letter-spacing: 0.05em;
+}
+
+.stat-chip-n.amber { color: var(--amber); }
+
+.stat-chip-l {
+  font-size: 9px;
+  color: var(--text3);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 500;
+  margin-top: 1px;
+}
+
+/* BANNER */
+.banner {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-sm);
+  padding: 10px 14px;
+  font-size: 13px;
+  color: var(--text2);
+  margin: 16px 20px 20px;
+}
+
+.banner-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.banner-dot.active { background: var(--green); box-shadow: 0 0 6px var(--green); }
+.banner-dot.rest { background: var(--text3); }
+.banner strong { color: var(--text); font-weight: 600; }
+
+/* TABS */
+.tabs-wrap {
+  padding: 16px 20px 20px;
+  background: var(--bg);
+}
+
+.tabs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.tab {
+  background: var(--surface2);
+  border: 1px solid var(--border2);
+  border-radius: var(--r-sm);
+  padding: 10px 6px 8px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.15s;
+  position: relative;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.tab-label {
+  font-family: 'Bebas Neue', sans-serif; letter-spacing: 0.05em;
+  font-size: 17px;
+  font-weight: 400;
+  color: var(--text);
+  letter-spacing: 0.08em;
+  display: block;
+}
+
+.tab-sub {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--text2);
+  display: block;
+  margin-top: 2px;
+  white-space: normal;
+  word-break: break-word;
+  line-height: 1.3;
+}
+
+.tab.active {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.tab.active .tab-label { color: #0c0c0e; }
+.tab.active .tab-sub { color: rgba(12,12,14,0.6); }
+
+.tab-flag { color: var(--amber); }
+.tab.active .tab-flag { color: #0c0c0e; }
+
+.tab-pip {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--green);
+  margin: 4px auto 0;
+}
+
+.tab.active .tab-pip { background: rgba(12,12,14,0.5); }
+
+/* SESSION */
+.session {
+  padding: 16px 16px 0;
+}
+
+.session-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  overflow: hidden;
+  margin-bottom: 16px;
+}
+
+.session-header {
+  padding: 16px 18px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.session-info {}
+
+.session-day {
+  font-family: 'Syne', sans-serif;
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: -0.01em;
+}
+
+.session-type {
+  font-size: 12px;
+  color: var(--text3);
+  margin-top: 2px;
+}
+
+.session-btns {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.btn {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 8px 14px;
+  border-radius: var(--r-xs);
+  cursor: pointer;
+  border: 1px solid;
+  transition: all 0.15s;
+  white-space: nowrap;
+}
+
+.btn-primary {
+  background: transparent;
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.btn-primary:active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #0c0c0e;
+}
+
+.btn-ghost {
+  background: transparent;
+  border-color: var(--border2);
+  color: var(--text3);
+}
+
+.btn-ghost:active { background: var(--surface2); }
+
+/* MUSCLE GROUP */
+.muscle-label {
+  padding: 8px 18px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text3);
+  background: var(--surface2);
+  border-bottom: 1px solid var(--border);
+  border-top: 1px solid var(--border);
+}
+
+/* EXERCISE ROW */
+.ex {
+  display: flex;
+  align-items: center;
+  padding: 13px 18px;
+  border-bottom: 1px solid var(--border);
+  gap: 12px;
+}
+
+.ex:last-child { border-bottom: none; }
+
+.ex-info { flex: 1; min-width: 0; }
+
+.ex-name {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text);
+  margin-bottom: 6px;
+  white-space: normal;
+  word-break: break-word;
+}
+
+
+.ex-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  align-items: center;
+}
+
+.pill {
+  font-size: 10px;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 20px;
+  white-space: nowrap;
+  letter-spacing: 0.02em;
+}
+
+.pill-sets {
+  background: transparent;
+  color: var(--text);
+  padding: 0;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.pill-reps {
+  background: transparent;
+  color: var(--blue);
+  padding: 0;
+  font-size: 12px;
+  font-weight: 600;
+}
+.pill-sep {
+  color: var(--text3);
+  font-weight: 400;
+}
+.pill-range {
+  color: var(--text3);
+  font-weight: 400;
+  font-size: 11px;
+}
+
+.pill-flag {
+  background: var(--amber);
+  color: #0c0c0e;
+  cursor: pointer;
+  font-size: 10px;
+  padding: 3px 8px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  animation: pulse-flag 2s ease-in-out infinite;
+}
+.pill-flag:active { opacity: 0.8; transform: scale(0.96); }
+
+.pill-guide {
+  background: var(--blue-dim);
+  color: var(--blue);
+  cursor: pointer;
+  font-size: 10px;
+  padding: 3px 8px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  border-radius: 20px;
+}
+.pill-guide:active { opacity: 0.8; transform: scale(0.96); }
+
+.skill-btn {
+  cursor: pointer;
+  color: var(--accent);
+  border-color: var(--accent) !important;
+  font-weight: 700;
+}
+.skill-btn:active { opacity: 0.8; transform: scale(0.97); }
+
+.skill-pills {
+  margin-top: 6px;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.pill-week {
+  background: var(--blue-dim);
+  color: var(--blue);
+  cursor: pointer;
+  font-size: 10px;
+  padding: 3px 8px;
+  font-weight: 700;
+  border-radius: 20px;
+}
+.pill-week:active { opacity: 0.8; transform: scale(0.96); }
+.pill-hold {
+  background: var(--surface2);
+  color: var(--text3);
+  cursor: pointer;
+  font-size: 10px;
+  padding: 3px 8px;
+  font-weight: 600;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  min-width: 92px;
+  text-align: center;
+  box-sizing: border-box;
+}
+.pill-hold.on {
+  background: var(--amber-dim);
+  color: var(--amber);
+  border-color: transparent;
+}
+.pill-hold:active { opacity: 0.8; transform: scale(0.96); }
+@keyframes pulse-flag {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+.ex-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.weight-input {
+  width: 120px;
+  background: var(--surface2);
+  border: 1px solid var(--border2);
+  border-radius: var(--r-xs);
+  color: var(--text);
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 7px 6px;
+  text-align: center;
+  outline: none;
+  -webkit-appearance: none;
+  transition: border-color 0.15s;
+}
+
+.weight-input:focus { border-color: var(--accent); }
+
+.skill-row {
+  margin-top: 8px;
+  gap: 6px;
+}
+
+.skill-reps {
+  display: inline-block;
+  line-height: 1.5;
+}
+.skill-target {
+  color: var(--blue);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.prog {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.prog-row {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  min-height: 20px;
+  flex-wrap: nowrap;
+}
+.prog-flag-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: flex-end;
+}
+.flag-mid {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.prog-track {
+  width: 50px;
+  height: 3px;
+  background: var(--border2);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.prog-fill {
+  height: 100%;
+  background: var(--green);
+  border-radius: 2px;
+  transition: width 0.4s;
+}
+
+.prog-pct {
+  font-size: 10px;
+  color: var(--text3);
+  min-width: 26px;
+  text-align: right;
+  font-weight: 500;
+}
+
+/* MODAL */
+.overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.75);
+  z-index: 100;
+  align-items: flex-end;
+  padding-bottom: env(safe-area-inset-bottom, 0);
+}
+
+.overlay.open { display: flex; }
+
+.modal {
+  background: var(--surface);
+  border: 1px solid var(--border2);
+  border-radius: var(--r) var(--r) 0 0;
+  padding: 24px 20px 32px;
+  width: 100%;
+}
+
+.modal-handle {
+  width: 36px;
+  height: 4px;
+  background: var(--border2);
+  border-radius: 2px;
+  margin: 0 auto 20px;
+}
+
+.modal-badge {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--amber);
+  background: var(--amber-dim);
+  border-radius: 20px;
+  padding: 3px 10px;
+  margin-bottom: 10px;
+}
+
+.modal-badge.guide {
+  color: var(--blue);
+  background: var(--blue-dim);
+}
+
+.modal-badge.howto {
+  color: var(--accent);
+  background: rgba(232,255,90,0.12);
+}
+
+.info-dot {
+  color: var(--text3);
+  font-size: 12px;
+  vertical-align: middle;
+}
+
+.modal-name {
+  font-family: 'Syne', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 8px;
+  letter-spacing: -0.01em;
+}
+
+.modal-desc {
+  font-size: 13px;
+  color: var(--text2);
+  line-height: 1.6;
+  margin-bottom: 12px;
+}
+
+.modal-hint {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--blue);
+  background: var(--blue-dim);
+  border-radius: var(--r-xs);
+  padding: 10px 14px;
+  margin-bottom: 20px;
+}
+
+.modal-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 8px;
+}
+
+.modal-input {
+  width: 100%;
+  background: var(--surface2);
+  border: 1px solid var(--border2);
+  border-radius: var(--r-sm);
+  color: var(--text);
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  padding: 14px 16px;
+  outline: none;
+  -webkit-appearance: none;
+  margin-bottom: 16px;
+  transition: border-color 0.15s;
+}
+
+.modal-input:focus { border-color: var(--accent); }
+
+.modal-btns {
+  display: flex;
+  gap: 10px;
+}
+
+.modal-btns .btn { flex: 1; text-align: center; padding: 13px; font-size: 14px; }
+
+/* TOAST */
+.toast {
+  position: fixed;
+  bottom: calc(env(safe-area-inset-bottom, 0px) + 20px);
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+  background: var(--green-dim);
+  border: 1px solid var(--green);
+  border-radius: 20px;
+  padding: 10px 20px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--green);
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.25s;
+  z-index: 200;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-top">
+    <div class="logo">Pro<span>gression</span></div>
+    <div class="stats-row">
+      <div class="stat-chip">
+        <div class="stat-chip-n" id="s-sess">0</div>
+        <div class="stat-chip-l">Sessions</div>
+      </div>
+      <div class="stat-chip" id="flags-chip">
+        <div class="stat-chip-n" id="s-flags">0</div>
+        <div class="stat-chip-l">Flags</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="banner" id="banner">
+  <div class="banner-dot" id="bdot"></div>
+  <span id="btext"></span>
+</div>
+
+<div class="tabs-wrap">
+  <div class="tabs" id="tabs"></div>
+</div>
+
+<div class="session">
+  <div class="session-card">
+    <div class="session-header">
+      <div class="session-info">
+        <div class="session-day" id="sday"></div>
+        <div class="session-type" id="stype"></div>
+      </div>
+      <div class="session-btns">
+        <button class="btn btn-ghost" onclick="skip()">Skip</button>
+        <button class="btn btn-primary" onclick="complete()">Done ✓</button>
+      </div>
+    </div>
+    <div id="exlist"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<div class="overlay" id="overlay">
+  <div class="modal">
+    <div class="modal-handle"></div>
+    <div class="modal-badge" id="m-badge">Progression</div>
+    <div class="modal-name" id="m-name"></div>
+    <div class="modal-desc" id="m-desc"></div>
+    <div class="modal-hint" id="m-hint"></div>
+    <div id="m-weight-section">
+      <div class="modal-label">New weight</div>
+      <input class="modal-input" type="text" id="m-input" inputmode="text"/>
+    </div>
+    <div class="modal-btns">
+      <button class="btn btn-ghost" onclick="closeModal()">Later</button>
+      <button class="btn btn-primary" id="m-confirm" onclick="saveWeight()">Update</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// EXERCISE DESCRIPTIONS — how to perform, with key form cues
+const DESCRIPTIONS = {
+  // TUESDAY
+  'tue_sp':  {how:'Hold the EZ bar at shoulder height. Press it straight up overhead until your arms are fully straight, then lower it back to your shoulders with control.', cues:['Tighten your stomach so your lower back doesn’t arch','Push the bar slightly back so it finishes over your head','Straighten your arms fully at the top']},
+  'tue_dip': {how:'Hold yourself up on the dip bars with the band looped under your knees for support. Bend your arms to lower your body until your shoulders dip just below your elbows, then push back up.', cues:['Lean forward a little to work the chest more','Keep your elbows pointing back, not flaring out wide','Stop when your upper arms are level — don’t drop too deep']},
+  'tue_pup': {how:'Hands just wider than shoulders, body in a straight line, band across your back for support. Lower your chest toward the floor slowly, then push back up.', cues:['Keep your body in one straight line — don’t let your hips sag','Take 2–3 seconds to lower down — that’s the slow part','Let your elbows go back at about 45°, not flared straight out']},
+  'tue_bss': {how:'Rest your back foot on a bench behind you, holding a plate at your chest. Bend your front leg to lower your back knee toward the floor, then push back up through your front foot.', cues:['Keep your front shin upright — knee above your ankle','Drop straight down rather than leaning forward','Push up through your whole front foot, especially the heel']},
+  'tue_le':  {how:'Sit on the leg extension, ankles under the pad. Straighten your legs to lift the weight, squeeze your quads at the top, then lower slowly. On the last set, drop the weight and keep going for the drop set.', cues:['Squeeze your thighs hard for a second at the top','Lower slowly — don’t let the weight crash down','On the drop set, push to near failure each mini-set']},
+  'tue_bgb': {how:'Rest your upper back on a bench with the bar across your hips. Push through your heels to lift your hips until your body is flat like a tabletop, squeeze your glutes hard, then lower.', cues:['Tuck your chin and keep your ribs down — don’t arch your back','Squeeze your glutes hard at the top and pause for a second','Lift with your glutes, not by arching your lower back']},
+  'tue_cr':  {how:'Stand tall wearing the weight vest and push up onto the balls of your feet, lifting your heels as high as you can. Pause at the top, then lower your heels slowly all the way down.', cues:['Go all the way up and all the way down for the full stretch','Pause for a second at the very top','Hold something for balance if you need it']},
+  'tue_bd':  {how:'On all fours, reach one arm forward and the opposite leg back until both are straight and level with your body. Hold briefly, return, then switch sides.', cues:['Keep your back flat and your hips level — don’t let them tilt','Breathe out as you reach out — never hold your breath','Move slowly and steadily, no swinging']},
+
+  // THURSDAY
+  'thu_pu':  {how:'Loop the band under one knee or foot, palms facing away from you. Start hanging with arms straight, pull up until your chin is near the bar, then lower slowly.', cues:['Start from a full hang, shoulders pulled down away from your ears','Drive your elbows down toward your hips — pull with your back, not just your arms','Take 2–3 seconds to lower down under control']},
+  'thu_cu':  {how:'Hang with your palms facing you (underhand grip), band under one knee or foot for the assisted reps. Pull up until your chin clears the bar, then lower slowly.', cues:['Palms face you, hands about shoulder-width apart','Keep your elbows tucked in close to your body','Lower slowly on every rep — the slow part builds strength']},
+  'thu_ap':  {how:'Set the bar about hip height. Hang underneath it with your body straight and heels on the floor (band assisting if needed). Pull your chest up to the bar, then lower.', cues:['Keep your body in one straight line — like a moving plank','Pull until your chest nearly touches the bar, squeezing your shoulder blades together','To make it harder, lower the bar on the rack so you’re more horizontal']},
+  'thu_bc':  {how:'Hold the EZ bar with an underhand grip, arms hanging straight. Curl the bar up toward your shoulders by bending your elbows, then lower slowly.', cues:['Keep your elbows tucked at your sides — don’t swing them forward','Don’t rock your body — let your arms do the work','Lower slowly all the way down until your arms are straight']},
+  'thu_rdl': {how:'Hold the EZ bar against your thighs. Push your hips backward as you lower the bar down your legs, keeping your back flat. When you feel a stretch in your hamstrings, drive your hips forward to stand tall.', cues:['Lead with your hips going back — the bend comes from your hips, not your lower back','Keep a soft bend in your knees and the bar close to your legs','Squeeze your glutes to pull yourself back up to standing']},
+  'thu_slp': {how:'On the leg press with one foot on the platform, lower the weight with control until your knee bends to about 90°, then press back up without snapping your knee straight.', cues:['Place your foot in the middle of the platform, push through your whole foot','Let your knee travel in line with your toes','Keep your lower back flat against the pad the whole time']},
+  'thu_lc':  {how:'Using the leg curl attachment, curl your heels toward your glutes against the weight, squeeze your hamstrings at the top, then lower slowly.', cues:['Keep your hips pressed down — don’t let them lift','Squeeze for a second at the top of the curl','Lower slowly with control, don’t let the weight drop']},
+  'thu_db':  {how:'Lie on your back with your arms reaching up and knees bent up over your hips. Slowly lower one arm and the opposite leg toward the floor, keeping your back flat, then return and switch.', cues:['Keep your lower back pressed flat into the floor the whole time','Breathe out as you reach out — never hold your breath','Move slowly and stop if you feel any pulling or strain']},
+
+  // SATURDAY
+  'sat_bss': {how:'Rest your back foot on a bench behind you, holding a plate at your chest. Bend your front leg to lower your back knee toward the floor, then push back up through your front foot.', cues:['Keep your front shin upright — knee above your ankle','Drop straight down rather than leaning forward','Push up through your whole front foot, especially the heel']},
+  'sat_ss':  {how:'Stand with a wide stance and toes turned out. Hold the kettlebell at your chest (or the EZ bar across your shoulders when it gets heavier). Squat straight down keeping your knees pushed out, then stand back up.', cues:['Push your knees out in line with your toes as you go down','Keep your chest up and back flat','Imagine pushing the floor apart with your feet as you stand']},
+  'sat_bgb': {how:'Rest your upper back on a bench with the bar across your hips. Push through your heels to lift your hips until your body is flat, squeeze your glutes hard, then lower with control.', cues:['Tuck your chin and keep your ribs down','Squeeze your glutes hard at the top and pause','Lift with your glutes, not by arching your back']},
+  'sat_slgb':{how:'Lie with your shoulders on the floor (or a bench when more advanced), one foot planted and the other leg lifted off the floor. Push through the planted heel to lift your hips, squeeze, then lower.', cues:['Keep your hips level — don’t let the lifted side drop down','Squeeze the glute of the working leg at the top','Rest a plate on your hip once bodyweight feels easy']},
+  'sat_bgk': {how:'On all fours with the band around one foot, kick that leg straight back and up, squeezing your glute at the top, then bring it back down with control.', cues:['Keep your back flat and your stomach tight','Squeeze your glute at the top of the kick','Move slowly — don’t swing the leg up']},
+  'sat_bga': {how:'Put the band around your knees, sitting or standing. Push your knees apart against the band as far as you can, squeeze your glutes, then bring them back together slowly.', cues:['Lean your upper body forward slightly to target the glutes','Squeeze at the widest point, knees pushed all the way out','Bring your knees back slowly — don’t let the band snap them in']},
+  'sat_lr':  {how:'Hold the bar (or a plate in each hand) at your sides. Raise your arms out to the sides until they’re level with your shoulders, then lower slowly.', cues:['Lead with your elbows, keep a slight bend in the arms','Raise only to shoulder height — no higher','Lower slowly, don’t let them drop']},
+  'sat_pf':  {how:'Anchor the band at chest height to your side. Hold it at your chest with both hands, then press your arms straight out in front of you. The band will try to twist you toward the anchor — resist it and stay facing forward. Bring it back in and repeat.', cues:['Tighten your stomach hard and resist the twist — that’s the whole exercise','Breathe out as you press your arms out — never hold your breath','Keep your hips and shoulders square and facing forward the whole time']},
+};
+
+// COACHING PROFILES — every exercise has a type and progression path
+const COACHING = {
+  // TUESDAY
+  'tue_sp':  {type:'weighted', suggest:'Add a small plate to the EZ bar (+1.25–2.5kg) once you hit the top of the rep range', flag:'Weight increase', sessions:0},
+  'tue_dip': {type:'weighted', suggest:'Move to a lighter band (black → red), or add reps before reducing assistance', flag:'Weight increase', sessions:0},
+  'tue_pup': {type:'skill', flag:'Skill progression', auto:true,
+    targets:['2 × 12 reps BW + purple','2 × 12 reps BW (slow 3s) purple','3 × 10 reps BW + purple','3 × 12 reps BW + purple','3 × 10 reps BW (no band, on knees)','3 × 8 reps BW (no band, full)'],
+    steps:['Week 1 — 2 sets of 12 on the purple band, slow & controlled','Week 2 — same but take 3 seconds to lower each rep','Week 3 — add a third set, 10 reps on purple','Week 4 — 3 sets of 12 on purple','Week 5 — try them with no band on your knees, 3 sets of 10','Week 6 — full push-ups, no band, 3 sets of 8']},
+  'tue_bss': {type:'weighted', suggest:'Hold a bigger plate or the kettlebell once 12 reps feels controlled', flag:'Weight increase', sessions:0},
+  'tue_le':  {type:'weighted', suggest:'Add weight to the main sets once 15 reps is easy — keep the drop sets at the end', flag:'Weight increase', sessions:0},
+  'tue_bgb': {type:'weighted', suggest:'Add 2.5–5kg to the bar once you hit 15 reps with a strong squeeze', flag:'Weight increase', sessions:0},
+  'tue_cr':  {type:'weighted', suggest:'Once 25 reps with the vest is easy, switch to single-leg, then add the kettlebell', flag:'Weight increase', sessions:0},
+  'tue_bd':  {type:'tempo', flag:'Form progression',
+    steps:['Pause 2s with arm & leg fully extended','Breathe out as you extend — never hold your breath','Slow it to 4s out, 4s back','Add a 4th set before adding any load']},
+
+  // THURSDAY
+  'thu_pu':  {type:'skill', flag:'Skill progression', auto:true,
+    targets:['1 × 1 rep BW + 3 × 3 reps purple','1 × 1 rep BW + 3 × 4 reps purple','1 × 1 rep BW + 3 × 5 reps purple','1 × 2 reps BW + 3 × 3 reps black','1 × 2 reps BW + 3 × 4 reps black','1 × 3 reps BW + 3 × 3 reps red','1 × 3 reps BW + 3 × 4 reps red','1 × 4 reps BW + 3 × 3 reps red'],
+    steps:['Week 1 — 1 unassisted, then 3 sets of 3 on the purple band','Week 2 — 1 unassisted, then 3 sets of 4 on purple','Week 3 — 1 unassisted, then 3 sets of 5 on purple','Week 4 — 2 unassisted, then 3 sets of 3 on the black band','Week 5 — 2 unassisted, then 3 sets of 4 on black','Week 6 — 3 unassisted, then 3 sets of 3 on the red band','Week 7 — 3 unassisted, then 3 sets of 4 on red','Week 8 — 4 unassisted, then 3 sets of 3 on red. Getting close to full bodyweight!']},
+  'thu_cu':  {type:'skill', flag:'Skill progression', auto:true,
+    targets:['1 × 3 reps BW + 2 × 3 reps purple','1 × 3 reps BW + 2 × 4 reps purple','1 × 4 reps BW + 2 × 3 reps black','1 × 4 reps BW + 2 × 4 reps black','1 × 5 reps BW + 2 × 3 reps red','1 × 5 reps BW + 2 × 4 reps red'],
+    steps:['Week 1 — 3 unassisted, then 2 sets of 3 on the purple band','Week 2 — 3 unassisted, then 2 sets of 4 on purple','Week 3 — 4 unassisted, then 2 sets of 3 on the black band','Week 4 — 4 unassisted, then 2 sets of 4 on black','Week 5 — 5 unassisted, then 2 sets of 3 on the red band','Week 6 — 5 unassisted, then 2 sets of 4 on red. Nearly all bodyweight!']},
+  'thu_ap':  {type:'tempo', flag:'Progression tip',
+    steps:['Lower the bar on the rack so your body is more horizontal — this makes it harder','Lower it again so you’re almost flat to the floor','Once flat is easy, elevate your feet on a bench','Add the weight vest or a plate on your chest']},
+  'thu_bc':  {type:'weighted', suggest:'Add a small plate to the EZ bar (+1.25–2.5kg) once you hit 12 reps', flag:'Weight increase', sessions:0},
+  'thu_rdl': {type:'weighted', suggest:'Add 2.5–5kg of plates to the EZ bar once 12 reps feels strong', flag:'Weight increase', sessions:0},
+  'thu_slp': {type:'weighted', suggest:'Add 2.5–5kg once you hit 10 reps on both legs', flag:'Weight increase', sessions:0},
+  'thu_lc':  {type:'weighted', suggest:'Add 2.5kg once 12 reps feels controlled with a 2s squeeze', flag:'Weight increase', sessions:0},
+  'thu_db':  {type:'tempo', flag:'Form progression',
+    steps:['Move slowly, keep your lower back flat on the floor','Breathe out as you extend — never hold your breath','Pause 2s at full extension','Slow to 4s per rep before adding any load']},
+
+  // SATURDAY
+  'sat_bss': {type:'weighted', suggest:'Hold a bigger plate or the kettlebell once 12 reps feels controlled', flag:'Weight increase', sessions:0},
+  'sat_ss':  {type:'weighted', suggest:'Once 14kg KB feels easy, switch to the EZ bar across your shoulders and add plates', flag:'Weight increase', sessions:0},
+  'sat_bgb': {type:'weighted', suggest:'Add 2.5–5kg to the bar once you hit 20 reps with a strong squeeze', flag:'Weight increase', sessions:0},
+  'sat_slgb':{type:'tempo', flag:'Progression tip',
+    steps:['Add reps — work up to 12 each side with a strong squeeze','Pause 3s at the top of each rep','Rest a 5kg plate on your hip','Shoulders up on a bench + the 5kg plate for a bigger range']},
+  'sat_bgk': {type:'tempo', flag:'Band progression',
+    steps:['Squeeze 2s at the top of every rep','Move to a thicker band for more tension','Add a 4th set','Slow the lowering to 3s to keep it challenging']},
+  'sat_bga': {type:'tempo', flag:'Band progression',
+    steps:['Squeeze 2s at the end of each rep','Move to a thicker band for more tension','Add a 4th set','Slow the return to 3s to keep tension on the glutes']},
+  'sat_lr':  {type:'weighted', suggest:'Add a small plate to the EZ bar once 15 reps feels easy with clean form', flag:'Weight increase', sessions:0},
+  'sat_pf':  {type:'tempo', flag:'Anti-rotation progression',
+    steps:['Hold 2s at full extension, brace your abs','Breathe out as you press — never hold your breath','Step further from the anchor for more tension','Move to a thicker band, or try the tall-kneeling version']},
+};
+
+const DAYS = [
+  {
+    id:'tue', label:'Tue', full:'Tuesday', sub:'Push & quads', jsDay:2,
+    groups:[
+      {name:'Push', ex:[
+        {id:'tue_sp', name:'Shoulder press', sets:3, min:12, max:15, weight:'EZ bar', compound:true},
+        {id:'tue_dip', name:'Dips', sets:4, min:10, max:12, weight:'BW + black band', compound:true},
+        {id:'tue_pup', name:'Slow push-ups', sets:2, min:1, max:1, weight:'2 × 12 reps BW + purple', skill:true, compound:true},
+      ]},
+      {name:'Quads & glutes', ex:[
+        {id:'tue_bss', name:'Bulgarian split squats (each leg)', sets:4, min:8, max:12, weight:'BW + 10kg', compound:true},
+        {id:'tue_le', name:'Leg extensions (drop set)', sets:4, min:12, max:15, weight:'20kg'},
+        {id:'tue_bgb', name:'Barbell glute bridges', sets:4, min:12, max:15, weight:'Bar + 5kg', compound:true},
+        {id:'tue_cr', name:'Calf raises', sets:3, min:20, max:25, weight:'BW + vest'},
+      ]},
+      {name:'Core', ex:[
+        {id:'tue_bd', name:'Bird dogs (each side)', sets:3, min:10, max:10, weight:'BW'},
+      ]},
+    ]
+  },
+  {
+    id:'thu', label:'Thu', full:'Thursday', sub:'Pull & hamstrings', jsDay:4,
+    groups:[
+      {name:'Pull', ex:[
+        {id:'thu_pu', name:'Pull-ups', sets:4, min:1, max:1, weight:'1 × 1 rep BW + 3 × 3 reps purple', skill:true, compound:true},
+        {id:'thu_cu', name:'Chin-ups', sets:3, min:1, max:1, weight:'1 × 3 reps BW + 2 × 3 reps purple', skill:true, compound:true},
+        {id:'thu_ap', name:'Australian pull-ups (WG)', sets:4, min:10, max:12, weight:'BW + black band', compound:true, apBand:true},
+        {id:'thu_bc', name:'Barbell curls', sets:3, min:8, max:12, weight:'EZ bar'},
+      ]},
+      {name:'Hamstrings & glutes', ex:[
+        {id:'thu_rdl', name:'Romanian deadlifts', sets:3, min:10, max:12, weight:'EZ bar', compound:true},
+        {id:'thu_slp', name:'Single leg press (each leg)', sets:4, min:8, max:10, weight:'17.5kg', compound:true},
+        {id:'thu_lc', name:'Leg curls', sets:4, min:10, max:12, weight:'10kg'},
+      ]},
+      {name:'Core', ex:[
+        {id:'thu_db', name:'Dead bugs (each side)', sets:3, min:10, max:10, weight:'BW'},
+      ]},
+    ]
+  },
+  {
+    id:'sat', label:'Sat', full:'Saturday', sub:'Glute focused', jsDay:6,
+    groups:[
+      {name:'Glutes & legs', ex:[
+        {id:'sat_bss', name:'Bulgarian split squats (each leg)', sets:3, min:8, max:12, weight:'BW + 10kg', compound:true},
+        {id:'sat_ss', name:'Sumo squats', sets:3, min:8, max:10, weight:'14kg KB', compound:true},
+        {id:'sat_bgb', name:'Glute bridges', sets:3, min:15, max:20, weight:'Bar + 5kg', compound:true},
+        {id:'sat_slgb', name:'Single leg glute bridges (each side)', sets:3, min:10, max:12, weight:'BW', compound:true},
+        {id:'sat_bgk', name:'Banded glute kickbacks (each leg)', sets:3, min:15, max:20, weight:'Band'},
+        {id:'sat_bga', name:'Banded glute abductions', sets:3, min:20, max:25, weight:'Band'},
+      ]},
+      {name:'Shoulders', ex:[
+        {id:'sat_lr', name:'Lateral raises', sets:3, min:10, max:15, weight:'Bar'},
+      ]},
+      {name:'Core', ex:[
+        {id:'sat_pf', name:'Pallof press (each side)', sets:3, min:12, max:12, weight:'Band'},
+      ]},
+    ]
+  },
+];
+
+const DN = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+
+function allEx() {
+  const a = [];
+  DAYS.forEach(d => d.groups.forEach(g => g.ex.forEach(e => a.push(e))));
+  return a;
+}
+
+function ld() { try { return JSON.parse(localStorage.getItem('prog_wife_v4') || '{}'); } catch(e) { return {}; } }
+function sv(s) { try { localStorage.setItem('prog_wife_v4', JSON.stringify(s)); } catch(e) {} }
+
+let S = ld();
+if (!S.ex) S.ex = {};
+if (!S.sess) S.sess = 0;
+if (!S.upg) S.upg = 0;
+if (!S.completed) S.completed = {};
+if (!S.skipped) S.skipped = {};
+if (!S.sessionCount) S.sessionCount = {};
+if (!S.hold) S.hold = {};
+function todayStr(){return new Date().toISOString().slice(0,10);}
+function isDayDone(id){return S.completed[id]===todayStr();}
+allEx().forEach(e => { if (!S.ex[e.id]) S.ex[e.id] = { reps: e.min, weight: e.weight, flagged: false }; });
+if (!S.started) S.started = {};
+// Show the Start guide on weighted exercises until she's logged her first session on them
+// (she sets her optimal weight for the new lower-rep scheme). After 1 session it stops showing.
+// Sync skill targets: show the correct target for the current level (default to step 0)
+allEx().forEach(e => {
+  if (e.skill) {
+    const c = COACHING[e.id];
+    if (c && c.targets) {
+      const idx = Math.min(S.sessionCount[e.id] || 0, c.targets.length - 1);
+      S.ex[e.id].weight = c.targets[idx];
+    }
+  }
+});
+
+const todayJS = new Date().getDay();
+const todayI = DAYS.findIndex(d => d.jsDay === todayJS);
+function nextI() {
+  for (let i = 1; i <= 7; i++) {
+    const c = (todayJS + i) % 7;
+    const f = DAYS.findIndex(d => d.jsDay === c);
+    if (f > -1) return f;
+  }
+  return 0;
+}
+let cur = todayI > -1 ? todayI : nextI();
+let mTarget = null;
+
+function dayFlags(id) {
+  const d = DAYS.find(x => x.id === id);
+  if (!d) return 0;
+  let n = 0;
+  d.groups.forEach(g => g.ex.forEach(e => { if (S.ex[e.id] && S.ex[e.id].flagged) n++; }));
+  return n;
+}
+
+function totFlags() {
+  let n = 0;
+  allEx().forEach(e => { if (S.ex[e.id] && S.ex[e.id].flagged) n++; });
+  return n;
+}
+
+function sug(e) {
+  const c = COACHING[e.id];
+  if (c && c.suggest) return c.suggest;
+  if (e.compound) return 'Suggested: +5 kg — compound lift';
+  if (e.weight && (e.weight.includes('BW') || e.weight.includes('vest') || e.weight.includes('belt'))) return 'Add more vest or belt weight';
+  return 'Suggested: +2.5 kg';
+}
+
+function nextRestDay() {
+  // find the next day (starting tomorrow) that is NOT a workout day
+  for (let i = 1; i <= 7; i++) {
+    const jsDay = (todayJS + i) % 7;
+    const isWorkout = DAYS.some(d => d.jsDay === jsDay);
+    if (!isWorkout) return DN[jsDay];
+  }
+  return '—';
+}
+
+function renderBanner() {
+  const dot = document.getElementById('bdot');
+  const txt = document.getElementById('btext');
+  if (todayI > -1) {
+    dot.className = 'banner-dot active';
+    txt.innerHTML = 'Today is your workout day · next rest day — <strong>' + nextRestDay() + '</strong>';
+  } else {
+    dot.className = 'banner-dot rest';
+    txt.innerHTML = 'Today is your rest day · next workout: <strong>' + DAYS[nextI()].full + '</strong>';
+  }
+}
+
+function renderTabs() {
+  const c = document.getElementById('tabs');
+  c.innerHTML = '';
+  c.style.gridTemplateColumns = 'repeat(' + DAYS.length + ', 1fr)';
+  DAYS.forEach((d, i) => {
+    const f = dayFlags(d.id);
+    const isToday = d.jsDay === todayJS;
+    const btn = document.createElement('button');
+    btn.className = 'tab' + (i === cur ? ' active' : '') + (f > 0 ? ' flagged' : '');
+    btn.innerHTML =
+      '<span class="tab-label">' + d.label + (f > 0 ? ' <span class="tab-flag">⚑</span>' : '') + '</span>' +
+      '<span class="tab-sub">' + d.sub + '</span>' +
+      (isToday ? '<div class="tab-pip"></div>' : '');
+    btn.onclick = () => { cur = i; renderSession(); renderTabs(); };
+    c.appendChild(btn);
+  });
+}
+
+function renderSession() {
+  const day = DAYS[cur];
+  const isToday = day.jsDay === todayJS;
+  document.getElementById('sday').textContent = day.full + (isToday ? ' — today' : '');
+  document.getElementById('stype').textContent = day.sub;
+  const c = document.getElementById('exlist');
+  c.innerHTML = '';
+
+  day.groups.forEach(g => {
+    const gl = document.createElement('div');
+    gl.className = 'muscle-label';
+    gl.textContent = g.name;
+    c.appendChild(gl);
+
+    g.ex.forEach(ex => {
+      const xd = S.ex[ex.id];
+      const isTimed = ex.timed;
+      const isFixed = ex.min === ex.max;
+      const pct = isFixed ? 100 : Math.round((xd.reps - ex.min) / (ex.max - ex.min) * 100);
+
+      const row = document.createElement('div');
+      row.className = 'ex' + (xd.flagged ? ' flagged' : '');
+
+      const cInfo = COACHING[ex.id];
+
+      const repPill = ex.skill
+        ? `<span class="pill pill-reps skill-reps"><span class="pill-sets">${ex.sets} sets</span><span class="pill-sep"> / </span><br><span class="skill-target">${xd.weight}</span></span>`
+        : isTimed
+        ? `<span class="pill pill-sets">${xd.weight}</span>`
+        : `<span class="pill pill-reps"><span class="pill-sets">${ex.sets} sets</span><span class="pill-sep"> / </span>${xd.reps} reps${ex.min !== ex.max ? ' <span class="pill-range">('+ex.min+'–'+ex.max+')</span>' : ''}</span>`;
+
+      const flagLabel = cInfo ? (cInfo.type === 'tempo' || cInfo.type === 'timed' ? '⚑ Progression tip' : cInfo.type === 'skill' ? '⚑ Skill plan' : '⚑ ' + cInfo.flag + ' tip') : '⚑ Increase weight tip';
+      const flagPill = xd.flagged
+        ? `<span class="pill pill-flag" onclick="openModal('${ex.id}')">${flagLabel}</span>`
+        : '';
+
+      const guidePill = (!isTimed && !ex.skill && (xd.weight||'').toLowerCase() !== 'band' && (!cInfo || (cInfo.type !== 'tempo' && cInfo.type !== 'skill')))
+        ? `<span class="pill pill-guide" onclick="openRIRGuide('${ex.id}')">▸ Start guide</span>`
+        : '';
+
+      // Skill: couldn't-finish on top (like weight box), week pill below (like start guide)
+      let skillTop = '';
+      let skillBottom = '';
+      if (ex.skill && cInfo && cInfo.targets) {
+        const wk = (S.sessionCount[ex.id] || 0) + 1;
+        const total = cInfo.targets.length;
+        const held = S.hold && S.hold[ex.id];
+        skillTop = `<span class="pill pill-hold${held ? ' on' : ''}" onclick="toggleHold('${ex.id}')">${held ? '✓ Holding' : 'Couldn’t finish'}</span>`;
+        skillBottom = `<span class="pill pill-week" onclick="openModal('${ex.id}')">Week ${wk}/${total}</span>`;
+      }
+
+      const bar = '';
+
+      const rightControl = ex.skill
+        ? skillTop
+        : `<input class="weight-input" type="text" value="${xd.weight}" onclick="openWeightInput('${ex.id}')" readonly style="cursor:pointer;" />`;
+
+      row.innerHTML = `
+        <div class="ex-info" onclick="openHowTo('${ex.id}')" style="cursor:pointer;">
+          <div class="ex-name">${ex.name} <span class="info-dot">ⓘ</span></div>
+          <div class="ex-pills">
+            ${repPill}
+          </div>
+        </div>
+        <div class="ex-right">
+          ${rightControl}
+          <div class="prog-row">
+            ${xd.flagged ? flagPill : ''}
+            ${guidePill}
+            ${skillBottom}
+            ${bar}
+          </div>
+        </div>`;
+      c.appendChild(row);
+    });
+  });
+}
+
+function updateStats() {
+  document.getElementById('s-sess').textContent = S.sess;
+  const f = totFlags();
+  document.getElementById('s-flags').textContent = f;
+  const num = document.getElementById('s-flags');
+  if (f > 0) num.classList.add('amber'); else num.classList.remove('amber');
+}
+
+function updateDoneBtn() {
+  const done = isDayDone(DAYS[cur].id);
+  const btn = document.querySelector('.btn-primary');
+  if (!btn) return;
+  if (done) {
+    btn.style.background = 'var(--accent)';
+    btn.style.borderColor = 'var(--accent)';
+    btn.style.color = '#0c0c0e';
+    btn.textContent = 'Done ✓';
+  } else {
+    btn.style.background = 'transparent';
+    btn.style.borderColor = 'var(--accent)';
+    btn.style.color = 'var(--accent)';
+    btn.textContent = 'Done ✓';
+  }
+}
+function render() { renderBanner(); renderTabs(); renderSession(); updateStats(); updateDoneBtn(); updateSkipBtn(); }
+
+function complete() {
+  const dayId = DAYS[cur].id;
+  if (isDayDone(dayId)) {
+    delete S.completed[dayId];
+    sv(S);
+    updateDoneBtn();
+    toast('Session unmarked');
+    return;
+  }
+  DAYS[cur].groups.forEach(g => g.ex.forEach(ex => {
+    S.started[ex.id] = true;
+    const c = COACHING[ex.id];
+    const xd = S.ex[ex.id];
+    if (!c || c.type === 'finisher' || c.type === 'timed') return;
+    if (c.type === 'weighted' || c.type === 'vest') {
+      if (ex.min !== ex.max && !xd.flagged) {
+        xd.reps = Math.min(xd.reps + 1, ex.max);
+        if (xd.reps >= ex.max) xd.flagged = true;
+      } else if (ex.min === ex.max && !xd.flagged) {
+        if (!S.sessionCount[ex.id]) S.sessionCount[ex.id] = 0;
+        S.sessionCount[ex.id]++;
+        const threshold = c.sessions > 0 ? c.sessions : 4;
+        if (S.sessionCount[ex.id] >= threshold) { xd.flagged = true; S.sessionCount[ex.id] = 0; }
+      }
+    } else if (c.type === 'tempo') {
+      if (!S.sessionCount[ex.id]) S.sessionCount[ex.id] = 0;
+      S.sessionCount[ex.id]++;
+      if (S.sessionCount[ex.id] >= 4) { xd.flagged = true; S.sessionCount[ex.id] = 0; }
+    }
+  }));
+
+  // also flag timed exercises
+  DAYS[cur].groups.forEach(g => g.ex.forEach(ex => {
+    const c = COACHING[ex.id];
+    const xd = S.ex[ex.id];
+    if (!c || c.type !== 'timed') return;
+    if (!S.sessionCount[ex.id]) S.sessionCount[ex.id] = 0;
+    S.sessionCount[ex.id]++;
+    if (S.sessionCount[ex.id] >= 4) { xd.flagged = true; S.sessionCount[ex.id] = 0; }
+  }));
+
+  // Skill exercises: auto-advance one week unless held
+  let heldAny = false;
+  DAYS[cur].groups.forEach(g => g.ex.forEach(ex => {
+    if (!ex.skill) return;
+    const c = COACHING[ex.id];
+    const xd = S.ex[ex.id];
+    if (!c || !c.targets) return;
+    if (S.hold && S.hold[ex.id]) {
+      heldAny = true;
+      delete S.hold[ex.id]; // reset hold for next session
+      return;
+    }
+    if (!S.sessionCount[ex.id]) S.sessionCount[ex.id] = 0;
+    S.sessionCount[ex.id] = Math.min(S.sessionCount[ex.id] + 1, c.targets.length - 1);
+    xd.weight = c.targets[S.sessionCount[ex.id]];
+  }));
+
+  S.sess++;
+  S.completed[dayId] = todayStr();
+  sv(S);
+  toast(heldAny ? 'Session complete — held where you needed' : 'Session complete — levelled up! 💪');
+  render();
+}
+
+function skip() {
+  const dayId = DAYS[cur].id;
+  if (S.skipped && S.skipped[dayId] === todayStr()) {
+    delete S.skipped[dayId];
+    sv(S);
+    updateSkipBtn();
+    toast('Skip removed');
+    return;
+  }
+  if (!S.skipped) S.skipped = {};
+  S.skipped[dayId] = todayStr();
+  sv(S);
+  updateSkipBtn();
+  toast('Session skipped — no reps added');
+}
+
+function isDaySkipped(dayId) { return S.skipped && S.skipped[dayId] === todayStr(); }
+
+function updateSkipBtn() {
+  const btn = document.querySelector('.btn-ghost:not(#modal .btn-ghost)');
+  if (!btn) return;
+  const skipped = isDaySkipped(DAYS[cur].id);
+  btn.style.borderColor = skipped ? '#888890' : '';
+  btn.style.background = skipped ? '#888890' : '';
+  btn.style.color = skipped ? '#0c0c0e' : '';
+}
+
+function upW(id, val) {
+  const ex = allEx().find(e => e.id === id);
+  const xd = S.ex[id];
+  xd.weight = val;
+  if (xd.flagged) {
+    xd.flagged = false;
+    S.upg++;
+    if (ex.min !== ex.max) xd.reps = ex.min;
+    if (S.sessionCount[id]) S.sessionCount[id] = 0;
+    toast('Weight updated — keep pushing!');
+  }
+  sv(S);
+  render();
+}
+
+function getCoachStep(id) {
+  const c = COACHING[id];
+  if (!c || !c.steps) return null;
+  const idx = Math.min(S.sessionCount[id] || 0, c.steps.length - 1);
+  return c.steps[idx];
+}
+
+function isWeightUnset(ex, xd) {
+  return !xd.weightSet;
+}
+
+function toggleHold(id) {
+  if (!S.hold) S.hold = {};
+  if (S.hold[id]) delete S.hold[id];
+  else S.hold[id] = true;
+  sv(S);
+  renderSession();
+}
+
+function openWeightInput(id) {
+  const ex = allEx().find(e => e.id === id);
+  const xd = S.ex[id];
+  if (ex.skill || ex.timed) {
+    openModal(id);
+  } else if (isWeightUnset(ex, xd)) {
+    openRIRGuide(id);
+  } else {
+    openModal(id);
+  }
+}
+
+function openHowTo(id) {
+  const ex = allEx().find(e => e.id === id);
+  const d = DESCRIPTIONS[id];
+  mTarget = id;
+  document.getElementById('m-name').textContent = ex.name;
+  document.getElementById('m-badge').textContent = 'How to perform';
+  document.getElementById('m-badge').className = 'modal-badge howto';
+  document.getElementById('m-desc').textContent = d ? d.how : '';
+  document.getElementById('m-hint').innerHTML = d && d.cues
+    ? d.cues.map(c => '• ' + c).join('<br>')
+    : '';
+  document.getElementById('m-weight-section').style.display = 'none';
+  document.getElementById('m-confirm').style.display = 'none';
+  document.querySelector('#overlay .btn-ghost').textContent = 'Close';
+  document.getElementById('overlay').classList.add('open');
+}
+
+function openRIRGuide(id) {
+  const ex = allEx().find(e => e.id === id);
+  const xd = S.ex[id];
+  mTarget = id;
+  const isCompound = !!ex.compound;
+  const rir = isCompound ? '2–3' : '4–5';
+  const typeLabel = isCompound ? 'compound lift' : 'isolation exercise';
+  const wLower = (xd.weight || '').toLowerCase();
+  // band assistance: the word "band" or any of her band colours, but NOT "no band"/"without band"
+  const mentionsBand = /\bband\b/.test(wLower) || /\b(green|purple|black|red)\b/.test(wLower);
+  const saysNoBand = /no band|without band|no assist|unassist/.test(wLower);
+  const isBanded = mentionsBand && !saysNoBand;
+  // bodyweight: bw / bodyweight / body weight with no added kg, or explicitly no band
+  const hasAddedWeight = /\d\s*kg|\bbar\b|\bplate\b/.test(wLower);
+  const isBodyweight = !isBanded && !hasAddedWeight && /\bbw\b|bodyweight|body weight|^$|no band|unassist/.test(wLower);
+
+  document.getElementById('m-name').textContent = ex.name;
+  document.getElementById('m-badge').textContent = 'Start guide';
+  document.getElementById('m-badge').className = 'modal-badge guide';
+  document.getElementById('m-desc').textContent = isBanded
+    ? 'This uses a band to assist you — pick a band where you can hit ' + ex.min + ' reps (your minimum) with ' + rir + ' reps still left in the tank. Less assistance (thinner band) = harder.'
+    : isBodyweight
+    ? 'Aim for ' + ex.min + ' clean reps (your minimum) with ' + rir + ' still left in the tank. Once that’s easy, add weight or make the movement harder.'
+    : 'This is a ' + typeLabel + ' — pick a weight where you can hit ' + ex.min + ' reps (your minimum) with ' + rir + ' reps still left in the tank.';
+  document.getElementById('m-hint').textContent = isBanded
+    ? 'As you get stronger, move to a band that gives less help, then eventually none.'
+    : isBodyweight
+    ? 'Once bodyweight feels easy, add a vest, plate, or slow the reps down.'
+    : (isCompound
+      ? 'Compounds need heavier load — err on the side of challenging yourself.'
+      : 'Isolation work fatigues fast — start conservative and build up.');
+  document.getElementById('m-weight-section').style.display = 'block';
+  document.getElementById('m-confirm').style.display = '';
+  document.querySelector('#overlay .btn-ghost').textContent = 'Later';
+  document.getElementById('m-confirm').textContent = isBanded ? 'Set band' : 'Set weight';
+  document.getElementById('m-input').value = '';
+  document.getElementById('m-input').placeholder = 'e.g. ' + (xd.weight || ex.weight);
+  document.getElementById('overlay').classList.add('open');
+}
+
+function openModal(id) {
+  const ex = allEx().find(e => e.id === id);
+  const xd = S.ex[id];
+  const c = COACHING[id];
+  mTarget = id;
+
+  document.getElementById('m-name').textContent = ex.name;
+  document.getElementById('m-badge').textContent = c ? c.flag : 'Progression';
+  document.getElementById('m-badge').className = 'modal-badge';
+
+  const ws = document.getElementById('m-weight-section');
+  const confirmBtn = document.getElementById('m-confirm');
+  confirmBtn.style.display = '';
+  document.querySelector('#overlay .btn-ghost').textContent = 'Later';
+
+  if (!c || c.type === 'weighted' || c.type === 'vest') {
+    // Show weight input
+    ws.style.display = 'block';
+    confirmBtn.textContent = 'Update weight';
+    if (c && c.type === 'vest') {
+      document.getElementById('m-desc').textContent = 'You have completed enough sessions at this load. Time to add more vest weight.';
+      document.getElementById('m-hint').textContent = c.suggest;
+    } else {
+      document.getElementById('m-desc').textContent = ex.min !== ex.max
+        ? 'Hit the top of the rep range (' + ex.max + ' reps). Increase the weight and reps reset to ' + ex.min + '.'
+        : 'Strong consistency — time to add more weight.';
+      document.getElementById('m-hint').textContent = c ? c.suggest : sug(ex);
+    }
+    document.getElementById('m-input').value = xd.weight;
+  } else {
+    // Coaching only — no weight input
+    ws.style.display = 'none';
+    const step = getCoachStep(id);
+    if (c.type === 'tempo') {
+      document.getElementById('m-desc').textContent = 'Your body has adapted — the weight stays the same but the exercise gets harder.';
+      confirmBtn.style.display = '';
+      confirmBtn.textContent = 'Move up';
+      document.querySelector('#overlay .btn-ghost').textContent = 'Later';
+    } else if (c.type === 'timed') {
+      document.getElementById('m-desc').textContent = 'Time to increase the challenge on this exercise.';
+      confirmBtn.style.display = '';
+      confirmBtn.textContent = 'Move up';
+      document.querySelector('#overlay .btn-ghost').textContent = 'Later';
+    } else if (c.type === 'skill') {
+      const idx = Math.min(S.sessionCount[id] || 0, c.targets.length - 1);
+      const atLast = idx >= c.targets.length - 1;
+      document.getElementById('m-desc').textContent = atLast
+        ? 'You are on the final stage of this plan. Keep practising — once it feels solid we can build the next progression.'
+        : 'This moves up automatically each time you finish the session. Tap “Couldn’t finish” on the exercise to stay on this week instead.';
+      confirmBtn.style.display = 'none';
+      document.querySelector('#overlay .btn-ghost').textContent = 'Close';
+    }
+    document.getElementById('m-hint').textContent = step || 'Keep pushing — great consistency.';
+  }
+
+  document.getElementById('overlay').classList.add('open');
+}
+
+function closeModal() {
+  document.getElementById('overlay').classList.remove('open');
+  mTarget = null;
+}
+
+function saveWeight() {
+  if (!mTarget) return;
+  const c = COACHING[mTarget];
+  const ex = allEx().find(e => e.id === mTarget);
+  const xd = S.ex[mTarget];
+
+  if (!c || c.type === 'weighted' || c.type === 'vest') {
+    const val = document.getElementById('m-input').value.trim();
+    if (!val) return;
+    xd.weight = val;
+    xd.weightSet = true;
+    if (ex.min !== ex.max) xd.reps = ex.min;
+    xd.flagged = false;
+    S.upg++;
+    sv(S);
+    closeModal();
+    toast('Weight updated — keep pushing!');
+  } else {
+    // Coaching acknowledged — advance step
+    xd.flagged = false;
+    if (!S.sessionCount[mTarget]) S.sessionCount[mTarget] = 0;
+    S.sessionCount[mTarget] = Math.min(S.sessionCount[mTarget] + 1, (c.steps ? c.steps.length - 1 : 0));
+    // Skill exercises: update the displayed target to the new level
+    if (c.type === 'skill' && c.targets) {
+      const idx = Math.min(S.sessionCount[mTarget], c.targets.length - 1);
+      xd.weight = c.targets[idx];
+    }
+    S.upg++;
+    sv(S);
+    closeModal();
+    toast(c.type === 'skill' ? 'Levelled up — nice work! 💪' : 'Progression noted — apply next session!');
+  }
+  render();
+}
+
+function toast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3000);
+}
+
+document.getElementById('overlay').addEventListener('click', function(e) {
+  if (e.target === this) closeModal();
+});
+
+render();
+</script>
+</body>
+</html>
